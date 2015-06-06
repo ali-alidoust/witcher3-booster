@@ -14,6 +14,19 @@ CRTTISystem* rtti_system = nullptr;
 void* native_globals_function_map = nullptr;
 CGame** global_game = nullptr;
 
+void CountFunc(utils::VtableHook *hook)
+{
+	//Counts the Virtual Functions in VMT, mostly to see if they change inbetween patchs
+	unsigned int funcNum = hook->NumFuncs();
+	std::wstringstream wss;
+	std::wstring str;
+
+	wss << funcNum;
+	wss >> str;
+
+	MessageBox(NULL, str.c_str(), NULL, MB_OK);
+}
+
 void DumpEnums() {
   std::wofstream log_file;
   log_file.open("global_enums_log.txt");
@@ -320,7 +333,8 @@ DWORD WINAPI InitializeHook(void* arguments) {
   //FileManager* file_manager  = hook::pattern("48 8B 0D ? ? ? ? 48 8D 55 A0 41 B8").count(1).get(0).extract<FileManager*>(3);
 
   game_hook = new utils::VtableHook(*global_game);
-  game_hook->HookMethod(OnViewportInputDebugAlwaysHook, 128);
+
+  game_hook->HookMethod(OnViewportInputDebugAlwaysHook, 129); // Previously 128, 145 Functions as of 1.05
 
   auto exe_path = GetExecutablePath();
   exe_path += L"\\scriptplugins\\";
@@ -339,6 +353,7 @@ DWORD WINAPI InitializeHook(void* arguments) {
     };
   }
 
+  //CountFunc(game_hook); // Counts the Virtual Functions again
   //DumpGlobalFunctions();
 
   //DumpEnums();

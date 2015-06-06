@@ -72,7 +72,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>E:\The Witcher 3 Wild Hunt\bin\x64\plugins\</OutDir>
+    <OutDir>$(SolutionDir)$(Platform)\\The Witcher 3 Wild Hunt\bin\x64\plugins\</OutDir>
     <TargetName>debug-console-enabler</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
