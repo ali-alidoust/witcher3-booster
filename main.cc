@@ -197,7 +197,7 @@ typedef bool(*OnViewportInputType) (void* thisptr, void* viewport, EInputKey inp
 OnViewportInputType OnViewportInputDebugConsole = nullptr;
 
 bool OnViewportInputDebugAlwaysHook(void* thisptr, void* viewport, EInputKey input_key, EInputAction input_action, float tick) {
-  if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick)) return true;
+  //if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick)) return true;
 
   if (input_key == IK_F2 && input_action == IACT_Release) {
     input_key = IK_Tilde;
