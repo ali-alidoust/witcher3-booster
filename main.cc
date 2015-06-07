@@ -1,5 +1,6 @@
 #include <windows.h>
 #include <fstream>
+#include <string>
 
 #include "vtable/vmthooks.h"
 
@@ -13,6 +14,29 @@ void** global_debug_console = nullptr;
 CRTTISystem* rtti_system = nullptr;
 void* native_globals_function_map = nullptr;
 CGame** global_game = nullptr;
+EInputKey customBind;
+
+void loadBind()
+{
+	std::string line;
+	std::string cBindStr;
+	int cBindInt;
+	std::ifstream bindSetting;
+	bindSetting.open("custombind.txt");
+	if (bindSetting.is_open())
+	{
+		while (std::getline(bindSetting, line))
+		{
+			cBindStr = line.c_str();
+		}
+		bindSetting.close();
+		cBindInt = atoi(cBindStr.c_str());
+	}
+
+	customBind = static_cast<EInputKey>(cBindInt);
+
+	return;
+}
 
 void CountFunc(utils::VtableHook *hook)
 {
@@ -197,9 +221,8 @@ typedef bool(*OnViewportInputType) (void* thisptr, void* viewport, EInputKey inp
 OnViewportInputType OnViewportInputDebugConsole = nullptr;
 
 bool OnViewportInputDebugAlwaysHook(void* thisptr, void* viewport, EInputKey input_key, EInputAction input_action, float tick) {
-  //if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick)) return true;
-
-  if (input_key == IK_F2 && input_action == IACT_Release) {
+	//if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick) ) return true;
+  if (input_key == customBind && input_action == IACT_Release) {
     input_key = IK_Tilde;
     input_action = IACT_Press;
   }
@@ -289,6 +312,8 @@ static bool BaseEngine_InitializeScripts(void* rcx, void* rdx) {
 DWORD WINAPI InitializeHook(void* arguments) { 
   hook::set_base();
   HookFunction::RunAll();
+
+  loadBind();
 
   std::wstring command_line = GetCommandLineW();
 
