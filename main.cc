@@ -220,14 +220,16 @@ void DumpGlobalFunctions() {
 typedef bool(*OnViewportInputType) (void* thisptr, void* viewport, EInputKey input_key, EInputAction input_action, float tick);
 OnViewportInputType OnViewportInputDebugConsole = nullptr;
 
-bool OnViewportInputDebugAlwaysHook(void* thisptr, void* viewport, EInputKey input_key, EInputAction input_action, float tick) {
+bool OnViewportInputDebugAlwaysHook(void* thisptr, void* viewport, EInputKey input_key, EInputAction input_action, float tick) 
+{
+	if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick)) return true;
 
-  if (input_key == customBind && input_action == IACT_Release) {
-    input_key = IK_Tilde;
-    input_action = IACT_Press;
-  }
+	if (input_key == customBind && input_action == IACT_Release) {
+	    input_key = IK_Tilde;
+		input_action = IACT_Press;
+	}
 
-  return OnViewportInputDebugConsole(*global_debug_console, viewport, input_key, input_action, tick);
+	return OnViewportInputDebugConsole(*global_debug_console, viewport, input_key, input_action, tick);
 }
 
 void funcLogHook(struct CObject *a1, struct CScriptStackFrame *a2, void *a3) {
