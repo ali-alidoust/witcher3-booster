@@ -1,0 +1,53 @@
+The following is a list of Armor Schematics along with the crossbow bolt schematics for use with the additem command. Does not include the Witcher School schematics.
+
+Light Armor 1 schematic
+Light Armor 2 schematic
+Light Armor 3 schematic
+Light Armor 4 schematic
+Light Armor 5 schematic
+Light Armor 6 schematic
+Light Armor 7 schematic
+Light Armor 8 schematic
+Medium Armor 1 schematic
+Medium Armor 2 schematic
+Medium Armor 3 schematic
+Medium Armor 4 schematic
+Thyssen Armor schematic
+Heavy Armor 1 schematic
+Heavy Armor 2 schematic
+Heavy Armor 3 schematic
+Heavy Armor 4 schematic
+Relic Heavy 3 schematic
+Gloves 1 schematic
+Gloves 2 schematic
+Gloves 3 schematic
+Gloves 4 schematic
+Heavy Gloves 1 schematic
+Heavy Gloves 2 schematic
+Heavy Gloves 3 schematic
+Heavy Gloves 4 schematic
+Pants 1 schematic
+Pants 2 schematic
+Pants 3 schematic
+Pants 4 schematic
+Heavy Pants 1 schematic
+Heavy Pants 2 schematic
+Heavy Pants 3 schematic
+Heavy Pants 4 schematic
+Boots 1 schematic
+Boots 2 schematic
+Boots 3 schematic
+Boots 4 schematic
+Boots 7 schematic
+Heavy Boots 1 schematic
+Heavy Boots 2 schematic
+Heavy Boots 3 schematic
+Heavy Boots 4 schematic
+Heavy Boots 7 schematic
+Heavy Boots 8 schematic
+
+Blunt Bolt schematic
+Split Bolt schematic
+Broadhead Bolt schematic
+Target Point Bolt schematic
+Explosive Bolt schematic

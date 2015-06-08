@@ -1,0 +1,41 @@
+The following is a list of Weapon Schematics for use with the additem command. Does not include the Witcher School schematics.
+
+Short sword 1 schematic
+Short sword 2 schematic
+No Mans Land sword 1 schematic
+No Mans Land sword 2 schematic
+No Mans Land sword 3 schematic
+No Mans Land sword 4 schematic
+Skellige sword 1 schematic
+Skellige sword 2 schematic
+Novigraadan sword 1 schematic
+Novigraadan sword 4 schematic
+Nilfgaardian sword 1 schematic
+Nilfgaardian sword 4 schematic
+Inquisitor sword 1 schematic
+Inquisitor sword 2 schematic
+Scoiatael sword 2 schematic
+Scoiatael sword 3 schematic
+Dwarven sword 1 schematic
+Dwarven sword 2 schematic
+Gnomish sword 1 schematic
+Gnomish sword 2 schematic
+Arbitrator schematic
+Beannshie schematic
+Blackunicorn schematic
+Longclaw schematic
+Silver sword 1 schematic
+Silver sword 2 schematic
+Silver sword 3 schematic
+Silver sword 4 schematic
+Silver sword 6 schematic
+Silver sword 7 schematic
+Elven silver sword 1 schematic
+Elven silver sword 2 schematic
+Gnomish silver sword 1 schematic
+Gnomish silver sword 2 schematic
+Dwarven silver sword 1 schematic
+Dwarven silver sword 2 schematic
+Harpy schematic
+Negotiator schematic
+Weeper schematic

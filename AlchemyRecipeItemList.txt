@@ -1,0 +1,132 @@
+The following is a list of Alchemy recipes for use with the additem command.
+
+Recipe for Mutagen 1
+Recipe for Mutagen 2
+Recipe for Mutagen 3
+Recipe for Mutagen 4
+Recipe for Mutagen 5
+Recipe for Mutagen 6
+Recipe for Mutagen 7
+Recipe for Mutagen 8
+Recipe for Mutagen 9
+Recipe for Mutagen 10
+Recipe for Mutagen 11
+Recipe for Mutagen 12
+Recipe for Mutagen 13
+Recipe for Mutagen 14
+Recipe for Mutagen 15
+Recipe for Mutagen 16
+Recipe for Mutagen 17
+Recipe for Mutagen 18
+Recipe for Mutagen 19
+Recipe for Mutagen 20
+Recipe for Mutagen 21
+Recipe for Mutagen 22
+Recipe for Mutagen 23
+Recipe for Mutagen 24
+Recipe for Mutagen 26
+Recipe for Mutagen 27
+Recipe for Mutagen 28
+Recipe for Beast Oil 1
+Recipe for Beast Oil 2
+Recipe for Beast Oil 3
+Recipe for Cursed Oil 2
+Recipe for Cursed Oil 3
+Recipe for Hanged Man Venom 1
+Recipe for Hanged Man Venom 2
+Recipe for Hanged Man Venom 3
+Recipe for Hybrid Oil 1
+Recipe for Hybrid Oil 2
+Recipe for Hybrid Oil 3
+Recipe for Insectoid Oil 1
+Recipe for Insectoid Oil 2
+Recipe for Insectoid Oil 3
+Recipe for Magicals Oil 1
+Recipe for Magicals Oil 2
+Recipe for Magicals Oil 3
+Recipe for Necrophage Oil 1
+Recipe for Necrophage Oil 2
+Recipe for Necrophage Oil 3
+Recipe for Specter Oil 1
+Recipe for Specter Oil 2
+Recipe for Specter Oil 3
+Recipe for Vampire Oil 1
+Recipe for Vampire Oil 2
+Recipe for Vampire Oil 3
+Recipe for Draconide Oil 1
+Recipe for Draconide Oil 2
+Recipe for Draconide Oil 3
+Recipe for Ogre Oil 1
+Recipe for Ogre Oil 2
+Recipe for Ogre Oil 3
+Recipe for Relic Oil 1
+Recipe for Relic Oil 2
+Recipe for Relic Oil 3
+Recipe for Dancing Star 1
+Recipe for Dancing Star 2
+Recipe for Dancing Star 3
+Recipe for Devils Puffball 1
+Recipe for Devils Puffball 2
+Recipe for Devils Puffball 3
+Recipe for Dwimeritium Bomb 1
+Recipe for Dwimeritium Bomb 2
+Recipe for Dwimeritium Bomb 3
+Recipe for Dragons Dream 1
+Recipe for Dragons Dream 2
+Recipe for Dragons Dream 3
+Recipe for Grapeshot 1
+Recipe for Grapeshot 2
+Recipe for Grapeshot 3
+Recipe for Samum 1
+Recipe for Samum 2
+Recipe for Samum 3
+Recipe for Silver Dust Bomb 1
+Recipe for Silver Dust Bomb 2
+Recipe for Silver Dust Bomb 3
+Recipe for White Frost 1
+Recipe for White Frost 2
+Recipe for White Frost 3
+Recipe for Blizzard 1
+Recipe for Blizzard 2
+Recipe for Blizzard 3
+Recipe for Cat 2
+Recipe for Cat 3
+Recipe for Full Moon 1
+Recipe for Full Moon 2
+Recipe for Full Moon 3
+Recipe for Golden Oriole 1
+Recipe for Golden Oriole 2
+Recipe for Golden Oriole 3
+Recipe for Killer Whale 1
+Recipe for Maribor Forest 1
+Recipe for Maribor Forest 2
+Recipe for Maribor Forest 3
+Recipe for Petris Philtre 1
+Recipe for Petris Philtre 2
+Recipe for Petris Philtre 3
+Recipe for Swallow 2
+Recipe for Swallow 3
+Recipe for Tawny Owl 1
+Recipe for Tawny Owl 2
+Recipe for Tawny Owl 3
+Recipe for Thunderbolt 1
+Recipe for Thunderbolt 2
+Recipe for Thunderbolt 3
+Recipe for White Honey 1
+Recipe for White Honey 2
+Recipe for White Honey 3
+Recipe for White Raffards Decoction 1
+Recipe for White Raffards Decoction 2
+Recipe for White Raffards Decoction 3
+Recipe for Black Blood 1
+Recipe for Black Blood 2
+Recipe for Black Blood 3
+Recipe for Aether
+Recipe for Albedo
+Recipe for Hydragenum
+Recipe for Nigredo
+Recipe for Quebrith
+Recipe for Rebis
+Recipe for Rubedo
+Recipe for Vermilion
+Recipe for Vitriol
