@@ -222,8 +222,9 @@ OnViewportInputType OnViewportInputDebugConsole = nullptr;
 
 bool OnViewportInputDebugAlwaysHook(void* thisptr, void* viewport, EInputKey input_key, EInputAction input_action, float tick) 
 {
-	if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick)) return true;
-
+	#ifndef NOCAM
+		if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick)) return true;
+	#endif
 	if (input_key == customBind && input_action == IACT_Release) {
 	    input_key = IK_Tilde;
 		input_action = IACT_Press;
