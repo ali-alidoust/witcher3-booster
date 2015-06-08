@@ -1,0 +1,19 @@
+The following is the schematics and item codes for the Weapon and Armor repair kits
+
+
+
+weapon_repair_kit_1
+weapon_repair_kit_2
+weapon_repair_kit_3
+
+WeaponRepairKit_1 schematic
+WeaponRepairKit_2 schematic
+WeaponRepairKit_3 schematic
+
+armor_repair_kit_1
+armor_repair_kit_2
+armor_repair_kit_3
+
+ArmorRepairKit_1 schematic
+ArmorRepairKit_2 schematic
+ArmorRepairKit_3 schematic
