@@ -225,7 +225,7 @@ bool OnViewportInputDebugAlwaysHook(void* thisptr, void* viewport, EInputKey inp
 	#ifndef NOCAM
 		if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick)) return true;
 	#endif
-	if (input_key == customBind && input_action == IACT_Release) {
+	if (input_key == customBind && input_action == IACT_Press) {
 	    input_key = IK_Tilde;
 		input_action = IACT_Press;
 	}
@@ -255,7 +255,7 @@ void ReplaceFunction(const char* name, uint64_t address) {
   }
 }
 
-static void ScriptWarn(void* thisptr, CScriptFileContext* file_context, TString* message) {
+/*static void ScriptWarn(void* thisptr, CScriptFileContext* file_context, TString* message) {
   std::wofstream log_file;
   log_file.open("script_compilation.log", std::ios_base::app);
   log_file << "warn " << file_context->file_name.buffer_address << ":" << file_context->line_number << " " << message->buffer_address << std::endl;
@@ -271,7 +271,7 @@ static void ScriptError(void* thisptr, CScriptFileContext* file_context, TString
   log_file.close();
 
   std::wcerr << "ERROR " << file_context->file_name.buffer_address << ":" << file_context->line_number << " " << message->buffer_address << std::endl;
-}
+}*/
 
 std::wstring GetExecutablePath() {
   wchar_t buffer[MAX_PATH];
@@ -334,6 +334,7 @@ DWORD WINAPI InitializeHook(void* arguments) {
     //OrginalBaseEngine_InitializeScripts = (decltype(OrginalBaseEngine_InitializeScripts))hook::get_call(hook);
     //hook::call(hook, BaseEngine_InitializeScripts);
 
+
     void* compilation_messages = hook::pattern("48 8D 35 ? ? ? ? 48 8D 54 24").count(1).get(0).extract<void*>(3);
 
     //location_compilation = hook::pattern("83 3D ? ? ? ? ? 74 77 E8").count(1).get(0).get<char>(2);
@@ -342,13 +343,13 @@ DWORD WINAPI InitializeHook(void* arguments) {
 
     DWORD old_protect;
 
-    if (VirtualProtect((void*)((uint64_t)compilation_messages + 2 * 8), 16, PAGE_EXECUTE_READWRITE, &old_protect)) {
+    /*if (VirtualProtect((void*)((uint64_t)compilation_messages + 2 * 8), 16, PAGE_EXECUTE_READWRITE, &old_protect)) {
       *(uint64_t*)((uint64_t)compilation_messages + 2 * 8) = (uint64_t)&ScriptWarn;
       *(uint64_t*)((uint64_t)compilation_messages + 3 * 8) = (uint64_t)&ScriptError;
-    }
+	} */ 
   }
 
-  global_game = hook::pattern("48 8B 05 ? ? ? ? 48 8D 4C 24 ? C6 44 24").count(1).get(0).extract<CGame**>(3);
+  global_game = hook::pattern("48 8B 05 ? ? ? ? 48 8D 4C 24 ? C6 44 24").count(1).get(0).extract<CGame**>(3);  
   global_debug_console = hook::pattern("48 89 05 ? ? ? ? EB 07 48 89 35 ? ? ? ? 48 8B 47 60").count(1).get(0).extract<void**>(3);
 
   while (*global_game == nullptr || *global_debug_console == nullptr) {
@@ -369,19 +370,19 @@ DWORD WINAPI InitializeHook(void* arguments) {
 
   auto plugin_names = GetAllFileNamesFromFolder(exe_path);
 
-  for (auto name : plugin_names) {
-    if (name.find(L".redscriptsplugin") == std::string::npos) continue;
+ // for (auto name : plugin_names) {
+ //   if (name.find(L".redscriptsplugin") == std::string::npos) continue;
 
-    auto full_path = (L"..\\..\\bin\\x64\\scriptplugins\\" + name);
-    CRTTISerializer serializer;
-    TString path(full_path.c_str());
+  //  auto full_path = (L"..\\..\\bin\\x64\\scriptplugins\\" + name);
+  //  CRTTISerializer serializer;
+  //  TString path(full_path.c_str());
 
-    if (serializer.LoadScriptData(&path, false)) {
-      OutputDebugStringW((L"Loaded scriptplugin: " + name).c_str());
-    };
-  }
+//    if (serializer.LoadScriptData(&path, false)) {
+   //   OutputDebugStringW((L"Loaded scriptplugin: " + name).c_str());
+   // };
+ // }
 
-  //CountFunc(game_hook); // Counts the Virtual Functions again
+ //CountFunc(game_hook); // Counts the Virtual Functions again
   //DumpGlobalFunctions();
 
   //DumpEnums();

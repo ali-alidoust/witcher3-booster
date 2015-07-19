@@ -203,7 +203,7 @@ struct TDynArray {
   uint64_t begin;
 };
 
-static hook::thiscall_stub<void(TString*, const wchar_t*)> TString_Constructor([]() {
+/*static hook::thiscall_stub<void(TString*, const wchar_t*)> TString_Constructor([]() {
   return hook::pattern("E8 ? ? ? ? 48 8D 54 24 ? 48 8D 4C 24 ? 41 83 CF 01").count(1).get(0).extract<void*>(1);
 });
 
@@ -224,7 +224,7 @@ public:
   ~TString() {
     TString_Deconstructor(this);
   }
-};
+};*/
 
 //static hook::thiscall_stub<void(CGame*, bool toggle)> CGame_EnableFreeCamera([]() {
 //  return hook::pattern("40 53 48 83 EC 40 48 8B D9 E8 ? ? ? ? 80 BB ? ? ? ? ?").count(1).get(0).get<void>(0);
@@ -260,24 +260,24 @@ public:
   void EnumEnums(TDynArray& array) { CRTTISystem_EnumEnums(this, array); }
 };
 
-static hook::thiscall_stub<void(CRTTISerializer*)> CRTTISerializer_Constructor([]() {
-  return hook::pattern("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 30 33 F6 48 8B D9 48 83 C1 28 48 89 71 D8 48 89 71 E0 48 89 71 E8 48 89 71 F0 48 89 71 F8").count(1).get(0).get<void*>(0);
-});
+//static hook::thiscall_stub<void(CRTTISerializer*)> CRTTISerializer_Constructor([]() {
+//  return hook::pattern("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 30 33 F6 48 8B D9 48 83 C1 28 48 89 71 D8 48 89 71 E0 48 89 71 E8 48 89 71 F0 48 89 71 F8").count(1).get(0).get<void*>(0);
+//});
 
-static hook::thiscall_stub<void(CRTTISerializer*)> CRTTISerializer_Deconstructor([]() {
-  char* location = hook::pattern("E8 ? ? ? ? 48 8D 4C 24 ? E8 ? ? ? ? 48 89 9C 24").count(1).get(0).get<char*>(1);
-  return reinterpret_cast<void*>(location + *(int32_t*)location + 4);
-});
+//static hook::thiscall_stub<void(CRTTISerializer*)> CRTTISerializer_Deconstructor([]() {
+  //char* location = hook::pattern("E8 ? ? ? ? 48 8D 4C 24 ? E8 ? ? ? ? 48 89 9C 24").count(1).get(0).get<char*>(1);
+  //return reinterpret_cast<void*>(location + *(int32_t*)location + 4);
+//});
 
-static hook::thiscall_stub<bool(CRTTISerializer*, TString*, bool)> CRTTISerializer_LoadScriptData([]() {
-  return hook::pattern("48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 4C 89 74 24 ? 55 48 8B EC 48 81 EC ? ? ? ? 48 8B F1").count(1).get(0).get<void*>(0);
-});
+//static hook::thiscall_stub<bool(CRTTISerializer*, TString*, bool)> CRTTISerializer_LoadScriptData([]() {
+//  return hook::pattern("48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 4C 89 74 24 ? 55 48 8B EC 48 81 EC ? ? ? ? 48 8B F1").count(1).get(0).get<void*>(0);
+//});
 
 //static hook::thiscall_stub<bool(CRTTISerializer*, File*)> CRTTISerializer_LoadScriptDataFromFile([]() {
 //  return hook::pattern("40 53 55 56 57 41 54 41 57 48 83 EC 68").count(1).get(0).get<void>(0);
 //});
 
-class CRTTISerializer {
+/*class CRTTISerializer {
   char _0x00[1000];
 public:
   CRTTISerializer() {
@@ -288,9 +288,9 @@ public:
     CRTTISerializer_Deconstructor(this);
   }
 
-  bool LoadScriptData(TString* name, bool validate) { return CRTTISerializer_LoadScriptData(this, name, validate); }
+  //bool LoadScriptData(TString* name, bool validate) { return CRTTISerializer_LoadScriptData(this, name, validate); }
   //bool LoadScriptDataFromFile(File* file) { return CRTTISerializer_LoadScriptDataFromFile(this, file); }
-};
+};*/
 
 //class CScriptsSerializer;
 //
@@ -327,7 +327,7 @@ public:
 //  File* CreateFileReader(TString const& name, uint64_t flag1, uint64_t flag2) { return FileManager_CreateFileReader(this, name, flag1, flag2); }
 //};
 
-struct CScriptFileContext {
+/*struct CScriptFileContext {
   TString file_name;
   uint32_t line_number;
-};
+};*/
