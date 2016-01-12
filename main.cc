@@ -377,7 +377,9 @@ DWORD WINAPI InitializeHook(void* arguments) {
   // B8").count(1).get(0).extract<FileManager*>(3);
 
   game_hook = new utils::VtableHook(*global_game);
-  game_hook->HookMethod(OnViewportInputDebugAlwaysHook, 133);
+  game_hook->HookMethod(OnViewportInputDebugAlwaysHook, 134);
+
+  //CountFunc(game_hook);
 
   // auto exe_path = GetExecutablePath();
   // exe_path += L"\\scriptplugins\\";
@@ -414,6 +416,7 @@ void FinalizeHook() {
 }
 
 int WINAPI DllMain(HINSTANCE instance, DWORD reason, PVOID reserved) {
+	loadBind();
   if (reason == DLL_PROCESS_ATTACH) {
     thread = CreateThread(nullptr, 0, InitializeHook, 0, 0, nullptr);
   } else if (reason == DLL_PROCESS_DETACH) {
