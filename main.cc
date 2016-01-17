@@ -6,6 +6,7 @@
 #include "witcher3-classes.h"
 
 #include <iostream>
+#include "nalatrozcommon.h"
 
 HANDLE thread = nullptr;
 utils::VtableHook* game_hook = nullptr;
@@ -14,28 +15,37 @@ CRTTISystem* rtti_system = nullptr;
 void* native_globals_function_map = nullptr;
 CGame** global_game = nullptr;
 EInputKey customBind;
+FreeCam fCamState;
 
 void loadBind()
 {
-	std::string line;
-	std::string cBindStr;
-	int cBindInt;
-	std::ifstream bindSetting;
-	bindSetting.open("custombind.txt");
-	if (bindSetting.is_open())
+	CustomBinding* cLoad;
+	cLoad = new CustomBinding;
+
+	bool result;
+	if (!cLoad)
 	{
-		while (std::getline(bindSetting, line))
-		{
-			cBindStr = line.c_str();
-		}
-		bindSetting.close();
-		cBindInt = atoi(cBindStr.c_str());
+		MessageBoxA(NULL, "Unable to load custom keybinds for the Debug Console, Binds set to default(TILDE AND F4) and Freecam is Off", "Oops", MB_OK);
+		customBind = IK_F4;
+		fCamState = off;
+		return;
 	}
-
-	customBind = static_cast<EInputKey>(cBindInt);
-
+	result = cLoad->loadSettings("custombind.txt");
+	if (!result)
+	{
+		MessageBoxA(NULL, "Unable to load custom keybinds for the Debug Console, Binds set to default(TILDE AND F4) and Freecam is Off", "Oops", MB_OK);
+		customBind = IK_F4;
+		fCamState = off;
+		return;
+	}
+	//MessageBoxA(NULL, "Custom Keybinds for Debug Console Loaded", "Success", MB_OK);
+	customBind = cLoad->cBind;
+	fCamState = cLoad->fCam;
 	return;
+
 }
+
+
 
 void CountFunc(utils::VtableHook *hook)
 {
@@ -241,10 +251,13 @@ bool OnViewportInputDebugAlwaysHook(void* thisptr,
                                     EInputAction input_action,
                                     float tick) {
 
- #ifndef NOCAM
-   if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick)) 
-	   return true;
- #endif
+	if (fCamState == on)
+	{
+		if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick))
+			return true;
+	}
+
+ 
 
  if (input_key == customBind && input_action == IACT_Press) {
 	  input_key = IK_Tilde;

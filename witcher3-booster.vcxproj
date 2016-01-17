@@ -164,9 +164,11 @@
     <ClCompile Include="hooking\Hooking.cpp" />
     <ClCompile Include="hooking\Hooking.Patterns.cpp" />
     <ClCompile Include="main.cc" />
+    <ClCompile Include="nalacommon.cpp" />
     <ClCompile Include="vtable\vmthooks.cc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="nalatrozcommon.h" />
     <ClInclude Include="witcher3-enums.h" />
     <ClInclude Include="hooking\HookFunction.h" />
     <ClInclude Include="hooking\Hooking.FuncCalls.h" />
