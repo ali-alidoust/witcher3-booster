@@ -16,31 +16,57 @@ void* native_globals_function_map = nullptr;
 CGame** global_game = nullptr;
 EInputKey customBind;
 FreeCam fCamState;
+EInputKey fCamBind;
+DebugConsole debug;
 
 void loadBind()
 {
+
+	
+
 	CustomBinding* cLoad;
 	cLoad = new CustomBinding;
 
 	bool result;
 	if (!cLoad)
 	{
-		MessageBoxA(NULL, "Unable to load custom keybinds for the Debug Console, Binds set to default(TILDE AND F4) and Freecam is Off", "Oops", MB_OK);
+		AllocConsole();
+		freopen("CONOUT$", "w", stdout);
+
+		std::cout << "Unable to load settings for the Debug Console, Binds set to default(TILDE AND F4) and Freecam is Off" << std::endl;
 		customBind = IK_F4;
-		fCamState = off;
+		fCamState = fCamOff;
 		return;
 	}
-	result = cLoad->loadSettings("custombind.txt");
+	result = cLoad->loadSettings("DebugConsoleSettings.cfg");
 	if (!result)
 	{
-		MessageBoxA(NULL, "Unable to load custom keybinds for the Debug Console, Binds set to default(TILDE AND F4) and Freecam is Off", "Oops", MB_OK);
+		AllocConsole();
+		freopen("CONOUT$", "w", stdout);
+
+		std::cout << "Unable to load custom keybinds for the Debug Console, Binds set to default(TILDE AND F4) and Freecam is Off" << std::endl;
 		customBind = IK_F4;
-		fCamState = off;
+		fCamState = fCamOff;
 		return;
 	}
-	//MessageBoxA(NULL, "Custom Keybinds for Debug Console Loaded", "Success", MB_OK);
-	customBind = cLoad->cBind;
-	fCamState = cLoad->fCam;
+	else if (customBind == 0 && fCamState == 0)
+	{
+
+		
+		customBind = cLoad->cBind;
+		fCamState = cLoad->fCam;
+		fCamBind = IK_F12;
+		debug = cLoad->dConsole;
+
+		if (debug == dConsoleOn)
+		{
+			AllocConsole();
+			freopen("CONOUT$", "w", stdout);
+
+			std::cout << "DEBUGMODE ENABLED - Settings and Custom Keybinds Loaded" << std::endl;
+		}
+	}
+	
 	return;
 
 }
@@ -251,10 +277,16 @@ bool OnViewportInputDebugAlwaysHook(void* thisptr,
                                     EInputAction input_action,
                                     float tick) {
 
-	if (fCamState == on)
+	if (fCamState == fCamOn)
 	{
-		if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick))
-			return true;
+			if ((*global_game)->ProcessFreeCameraInput(input_key, input_action, tick))
+				return true;
+
+			if (debug == dConsoleOn)
+			{
+				std::cout << "Input Key: " << input_key << " Input Action: " << input_action << " and tick: " << tick << std::endl;
+			}
+			
 	}
 
  
@@ -429,7 +461,6 @@ void FinalizeHook() {
 }
 
 int WINAPI DllMain(HINSTANCE instance, DWORD reason, PVOID reserved) {
-	loadBind();
   if (reason == DLL_PROCESS_ATTACH) {
     thread = CreateThread(nullptr, 0, InitializeHook, 0, 0, nullptr);
   } else if (reason == DLL_PROCESS_DETACH) {
