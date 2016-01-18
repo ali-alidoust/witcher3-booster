@@ -2,7 +2,7 @@
 
 Various tweaks for Witcher 3
 
-* Enables debug console (Ingame toggle: `~` or `F2`)
+* Enables debug console (Ingame toggle: `~` or `F4`)
 * Enables free camera (Ingame toggle: `F1`)
 
 ### Console functions
