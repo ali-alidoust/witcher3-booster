@@ -1,4 +1,7 @@
 #include "nalatrozcommon.h"
+#include <vector>
+#include <algorithm>
+#include <iterator>
 CustomBinding::CustomBinding()
 {
 	cBind = IK_F4;
@@ -12,42 +15,27 @@ CustomBinding::~CustomBinding()
 bool CustomBinding::loadSettings(std::string fName)
 {
 	std::string line;
-	std::string cLoadStr;
-	int cBindInt = 0;
-	int fCamEnabled = 0;
-	int dConsoleEnabled = 0;
-	int i = 0;
+	std::vector<std::string> vLoad;
+	std::vector<int> vInt;
 	std::ifstream bindSetting;
+
 	bindSetting.open(fName);
+
 	if (bindSetting.is_open())
 	{
 		while (std::getline(bindSetting, line))
 		{
-			i++;
-
-			cLoadStr = line.c_str();
-
-			if (i == 1)
-			{
-				cBindInt = atoi(cLoadStr.c_str());
-			}
-			else if (i == 2)
-			{
-				fCamEnabled = atoi(cLoadStr.c_str());
-			}
-			else if (i == 3)
-			{
-				dConsoleEnabled = atoi(cLoadStr.c_str());
-			}
-			else
-				return false;
+			vLoad.push_back(line);
 		}
 		bindSetting.close();
 	}
 
-	cBind = static_cast<EInputKey>(cBindInt);
-	fCam = static_cast<FreeCam>(fCamEnabled);
-	dConsole = static_cast<DebugConsole>(dConsoleEnabled);
+	std::transform(vLoad.begin(), vLoad.end(), std::back_inserter(vInt),
+		[](const std::string& str) { return std::stoi(str);});
+
+	cBind = static_cast<EInputKey>(vInt[0]);
+	fCam = static_cast<FreeCam>(vInt[1]);
+	dConsole = static_cast<DebugConsole>(vInt[2]);
 
 	return true;
 }
