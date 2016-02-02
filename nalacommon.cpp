@@ -1,7 +1,4 @@
 #include "nalatrozcommon.h"
-#include <vector>
-#include <algorithm>
-#include <iterator>
 CustomBinding::CustomBinding()
 {
 	cBind = IK_F4;

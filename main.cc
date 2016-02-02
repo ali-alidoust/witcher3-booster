@@ -55,7 +55,6 @@ void loadBind()
 		
 		customBind = cLoad->cBind;
 		fCamState = cLoad->fCam;
-		fCamBind = IK_F12;
 		debug = cLoad->dConsole;
 
 		if (debug == dConsoleOn)

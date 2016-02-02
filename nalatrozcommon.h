@@ -2,6 +2,9 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <vector>
+#include <algorithm>
+#include <iterator>
 #include "witcher3-enums.h"
 
 enum FreeCam { fCamOn = 1, fCamOff };
