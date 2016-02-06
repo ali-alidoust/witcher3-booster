@@ -30,6 +30,10 @@ bool CustomBinding::loadSettings(std::string fName)
 	std::transform(vLoad.begin(), vLoad.end(), std::back_inserter(vInt),
 		[](const std::string& str) { return std::stoi(str);});
 
+	if (vInt.empty())
+	{
+		return false;
+	}
 	cBind = static_cast<EInputKey>(vInt[0]);
 	fCam = static_cast<FreeCam>(vInt[1]);
 	dConsole = static_cast<DebugConsole>(vInt[2]);
