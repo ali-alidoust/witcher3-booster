@@ -334,7 +334,7 @@ DWORD WINAPI InitializeHook(void* arguments) {
     //OrginalBaseEngine_InitializeScripts = (decltype(OrginalBaseEngine_InitializeScripts))hook::get_call(hook);
     //hook::call(hook, BaseEngine_InitializeScripts);
 
-    void* compilation_messages = hook::pattern("48 8D 35 ? ? ? ? 48 8D 54 24").count(1).get(0).extract<void*>(3);
+    void* compilation_messages = hook::pattern("4C 8D 35 FA 1A C2 01").count(1).get(0).extract<void*>(3);
 
     //location_compilation = hook::pattern("83 3D ? ? ? ? ? 74 77 E8").count(1).get(0).get<char>(2);
     //uint32_t* yydebug = reinterpret_cast<uint32_t*>(location_compilation + *(int32_t*)location_compilation + 5);
@@ -348,8 +348,8 @@ DWORD WINAPI InitializeHook(void* arguments) {
     }
   }
 
-  global_game = hook::pattern("48 8B 05 ? ? ? ? 48 8D 4C 24 ? C6 44 24").count(1).get(0).extract<CGame**>(3);
-  global_debug_console = hook::pattern("48 89 05 ? ? ? ? EB 07 48 89 35 ? ? ? ? 48 8B 47 60").count(1).get(0).extract<void**>(3);
+  global_game = hook::pattern("48 8B 05 BF 4B FF 01").count(1).get(0).extract<CGame**>(3);
+  global_debug_console = hook::pattern("48 89 05 57 05 DB 01").count(1).get(0).extract<void**>(3);
 
   while (*global_game == nullptr || *global_debug_console == nullptr) {
     Sleep(500);
