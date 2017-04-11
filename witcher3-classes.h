@@ -122,11 +122,11 @@ struct CName {
 
 
 static hook::thiscall_stub<int(CEnum*, CName&, int&)> CEnum_FindValue([]() {
-  return hook::pattern("83 79 24 00 74 32").count(1).get(0).get<void*>(0);
+  return hook::pattern("83 79 1C 00 74 32").count(1).get(0).get<void*>(0);
 });
 
 static hook::thiscall_stub<bool(CEnum*, int, CName&)> CEnum_FindName([]() {
-  return hook::pattern("83 79 54 00 44 8B D2 ").count(1).get(0).get<void*>(0);
+  return hook::pattern("83 79 4C 00 44 8B D2 ").count(1).get(0).get<void*>(0);
 });
 
 struct CEnum {
@@ -204,11 +204,11 @@ struct TDynArray {
 };
 
 static hook::thiscall_stub<void(TString*, const wchar_t*)> TString_Constructor([]() {
-  return hook::pattern("E8 ? ? ? ? 48 8D 54 24 ? 48 8D 4C 24 ? 41 83 CF 01").count(1).get(0).extract<void*>(1);
+  return hook::pattern("E8 ? ? ? ? 48 8D 54 24 ? 48 8D 4C 24 ? 41 83 CE 01").count(1).get(0).extract<void*>(1);
 });
 
 static hook::thiscall_stub<void(TString*)> TString_Deconstructor([]() {
-  return hook::pattern("E8 ? ? ? ? 48 89 9C 24 ? ? ? ? 48 89 BC 24").count(1).get(0).extract<void*>(1);
+  return hook::pattern("E8 ? ? ? ? 33 DB 48 8B F3 45 84 F6").count(1).get(0).extract<void*>(1);
 });
 
 class TString {
@@ -245,11 +245,11 @@ static hook::thiscall_stub<CFunction*(CRTTISystem*, CName&)> CRTTISystem_FindGlo
 });
 
 static hook::thiscall_stub<void(CRTTISystem*, TDynArray&)> CRTTISystem_EnumFunctions([]() {
-  return hook::pattern("48 89 5C 24 ? 48 89 6C 24 ? 56 57 41 55 41 56 41 57 48 83 EC 30 33 FF").count(1).get(0).get<void*>(0);
+  return hook::pattern("48 89 5C 24 10 48 89 4C 24 08 55 56 57 41 54 41 55 41 56 41 57 48 8D 6C 24 D9 48 81 EC A0 00 00 00 48 8D 41 40 33 DB").count(1).get(0).get<void*>(0);
 });
 
 static hook::thiscall_stub<void(CRTTISystem*, TDynArray&)> CRTTISystem_EnumEnums([]() {
-  return hook::pattern("40 53 41 56 41 57 48 83 EC 30 33 DB 4C 8B F2 4C 8B F9 39 59 14").count(1).get(0).get<void*>(0);
+  return hook::pattern("40 53 55 41 56 48 83 EC 20 33 DB 4C 8B F2 48 8B E9 39 59 14").count(1).get(0).get<void*>(0);
 });
 
 class CRTTISystem {
@@ -261,16 +261,16 @@ public:
 };
 
 static hook::thiscall_stub<void(CRTTISerializer*)> CRTTISerializer_Constructor([]() {
-  return hook::pattern("48 89 5C 24 ? 48 89 74 24 ? 57 48 83 EC 30 33 F6 48 8B D9 48 83 C1 28 48 89 71 D8 48 89 71 E0 48 89 71 E8 48 89 71 F0 48 89 71 F8").count(1).get(0).get<void*>(0);
+  return hook::pattern("48 89 5C 24 08 48 89 74 24 10 57 48 83 EC 50 33 F6 48 8B D9 48 83 C1 20 48 89 71 E0 89 71 E8 48 89 71 EC 48 89 71 F4 89 71 FC").count(1).get(0).get<void*>(0);
 });
 
 static hook::thiscall_stub<void(CRTTISerializer*)> CRTTISerializer_Deconstructor([]() {
-  char* location = hook::pattern("E8 ? ? ? ? 48 8D 4C 24 ? E8 ? ? ? ? 48 89 9C 24").count(1).get(0).get<char*>(1);
+  char* location = hook::pattern("E8 ? ? ? ? 33 DB 48 8B F3 45 84 F6").count(1).get(0).get<char*>(1);
   return reinterpret_cast<void*>(location + *(int32_t*)location + 4);
 });
 
 static hook::thiscall_stub<bool(CRTTISerializer*, TString*, bool)> CRTTISerializer_LoadScriptData([]() {
-  return hook::pattern("48 89 5C 24 ? 48 89 74 24 ? 48 89 7C 24 ? 4C 89 74 24 ? 55 48 8B EC 48 81 EC ? ? ? ? 48 8B F1").count(1).get(0).get<void*>(0);
+  return hook::pattern("48 89 5C 24 08 48 89 74 24 10 48 89 7C 24 18 55 41 56 41 57 48 8B EC 48 81 EC 80 00 00 00 4C 8B F9 48 8D 4D A0 41 8B F1 4D 8B F0 48 8B DA").count(1).get(0).get<void*>(0);
 });
 
 //static hook::thiscall_stub<bool(CRTTISerializer*, File*)> CRTTISerializer_LoadScriptDataFromFile([]() {
